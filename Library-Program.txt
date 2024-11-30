@@ -1,0 +1,96 @@
+using System;
+using System.Collections.Generic;
+
+class Program
+{
+    static void Main(string[] args)
+    {
+        Library library = new Library();
+        int choice;
+
+        do
+        {
+            Console.WriteLine("\nLibrary Catalogue");
+            Console.WriteLine("1. Add Book");
+            Console.WriteLine("2. Search Book by Title");
+            Console.WriteLine("3. Search Book by Author");
+            Console.WriteLine("4. Check Book Availability");
+            Console.WriteLine("5. Exit");
+            Console.Write("Enter your choice: ");
+            choice = Convert.ToInt32(Console.ReadLine());
+
+            switch (choice)
+            {
+                case 1:
+                    library.AddBook();
+                    break;
+                case 2:
+                    library.SearchByTitle();
+                    break;
+                case 3:
+                    library.SearchByAuthor();
+                    break;
+                case 4:
+                    library.CheckAvailability();
+                    break;
+                case 5:
+                    Console.WriteLine("Exiting the program.");
+                    break;
+                default:
+                    Console.WriteLine("Invalid choice! Please try again.");
+                    break;
+            }
+        } while (choice != 5);
+    }
+}
+
+class Library
+{
+    private List<Book> books = new List<Book>();
+    Console.WriteLine(book);
+            }
+        }
+        else
+        {
+            Console.WriteLine("No books found by that author.");
+        }
+    }
+
+    public void CheckAvailability()
+    {
+        Console.Write("Enter book title to check availability: ");
+        string title = Console.ReadLine();
+
+        var foundBooks = books.FindAll(b => b.Title.Equals(title, StringComparison.OrdinalIgnoreCase));
+
+        if (foundBooks.Count > 0)
+        {
+            foreach (var book in foundBooks)
+            {
+                Console.WriteLine(Book '{book.Title}' by {book.Author} is {(book.IsAvailable ? "available" : "not available")}");
+            }
+        }
+        else
+        {
+            Console.WriteLine("No books found with that title.");
+        }
+    }
+}
+
+class Book
+{
+    public string Title { get; }
+    public string Author { get; }
+    public bool IsAvailable { get; }
+    public Book(string title, string author, bool isAvailable)
+    {
+        Title = title;
+        Author = author;
+        IsAvailable = isAvailable;
+    }
+
+    public override string ToString()
+    {
+        return $"{Title} by {Author} - Available: {(IsAvailable ? "Yes" : "No")}";
+    }
+}
